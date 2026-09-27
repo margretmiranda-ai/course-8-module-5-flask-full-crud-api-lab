@@ -171,3 +171,84 @@ After completing this lab, you will:
 ✅ Return proper HTTP status codes and structured responses  
 
 This is a critical step in your backend developer journey. Next up: persistent databases!
+
+
+---
+
+## API Documentation
+
+### `POST /events`
+Creates a new event.
+
+**Request**
+```bash
+curl -X POST http://127.0.0.1:5000/events \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Hackathon"}'
+```
+
+**Response — `201 Created`**
+```json
+{
+  "id": 3,
+  "title": "Hackathon"
+}
+```
+
+**Response — `400 Bad Request`** (missing title)
+```json
+{
+  "error": "Missing required field: 'title'"
+}
+```
+
+---
+
+### `PATCH /events/<id>`
+Updates the title of an existing event.
+
+**Request**
+```bash
+curl -X PATCH http://127.0.0.1:5000/events/1 \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Hackathon 2025"}'
+```
+
+**Response — `200 OK`**
+```json
+{
+  "id": 1,
+  "title": "Hackathon 2025"
+}
+```
+
+**Response — `404 Not Found`**
+```json
+{
+  "error": "Event with id 99 not found"
+}
+```
+
+---
+
+### `DELETE /events/<id>`
+Removes an event.
+
+**Request**
+```bash
+curl -X DELETE http://127.0.0.1:5000/events/2
+```
+
+**Response — `200 OK`**
+```json
+{
+  "message": "Event 2 deleted"
+}
+```
+
+**Response — `404 Not Found`**
+```json
+{
+  "error": "Event with id 99 not found"
+}
+```
