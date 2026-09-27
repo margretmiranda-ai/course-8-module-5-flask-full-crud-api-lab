@@ -17,6 +17,10 @@ events = [
     Event(2, "Python Workshop")
 ]
 
+@app.route("/", methods=["GET"])
+def welcome():
+    return jsonify({"message": "Welcome to the Event Management API"}), 200
+
 # TODO: Task 1 - Define the Problem
 # Create a new event from JSON input
 @app.route("/events", methods=["POST"])
@@ -71,4 +75,3 @@ def delete_event(event_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
-    
