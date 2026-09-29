@@ -75,7 +75,7 @@ def delete_event(event_id):
     events.remove(event)
 
     # TODO: Task 4 - Return and Handle Results
-    return jsonify({"message": f"Event {event_id} deleted"}), 200
+    return "", 204
 
 if __name__ == "__main__":
     app.run(debug=True)
